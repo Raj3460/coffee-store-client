@@ -6,7 +6,8 @@ const Header = () => {
               <div className='text-center space-x-3'>
                    header ami ===  <NavLink>home</NavLink>
                      <NavLink to='/addCoffee'>AddCoffee</NavLink>
-                     <NavLink to='/addCoffee'>AddCoffee</NavLink>
+                     <NavLink to='/signin'>SignIn</NavLink>
+                     <NavLink to='/signup'>SignUp</NavLink>
                      
               </div>
        );
