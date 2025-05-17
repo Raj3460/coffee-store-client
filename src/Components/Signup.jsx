@@ -11,18 +11,25 @@ const Signup = () => {
     const form = e.target;
     const formData = new FormData(form);
 
-    const { email, password, ...newProfile } = Object.fromEntries(
+    const { email, password, ...restFormDAta } = Object.fromEntries(
       formData.entries()
     );
 
-    //     const email = formData.get("email");
-    //     const password = formData.get("password");
-    console.log(email, password, newProfile);
+    
 
     //     create user in the fire base
     createUserSignUp(email, password)
       .then((result) => {
-        console.log(result);
+        console.log(result.user);
+
+
+        const newProfile ={
+              email,
+              ...restFormDAta,
+              creationTime : result.user?.metadata?.creationTime,
+              lastSignInTime : result.user?.metadata?.lastSignInTime
+
+        }
 
         //  send profileinfo to db
         fetch("http://localhost:3000/users", {
@@ -95,7 +102,7 @@ const Signup = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button className="btn btn-neutral mt-4">Login</button>
+          <button className="btn btn-neutral mt-4">Sign up</button>
         </form>
       </div>
     </div>
